@@ -24,7 +24,7 @@ export class TodosAccess {
     }
 
     async getTodosByKey(userId) {
-        logger.info('Get all todos list of user  ' + userId);
+        logger.info('Get all todos list of user  ',{ userId: userId });
 
         const result = await this.dynamoDbClient.query({
             TableName: this.todosTable,
@@ -39,7 +39,7 @@ export class TodosAccess {
     }
 
     async createTodo(todo) {
-        logger.info('create a todo with id  ' + todo.id);
+        logger.info('create a todo with id  ',  { todoId:  todo.todoId });
 
         await this.dynamoDbClient.put({
             TableName: this.todosTable,
@@ -50,7 +50,7 @@ export class TodosAccess {
     }
 
     async updateTodo(todo, todoId, userId) {
-        logger.info('update a todo with id  '+ todoId);
+        logger.info('update a todo with id  ', { todoId: todoId });
 
         const params = {
             TableName: this.todosTable,
@@ -70,7 +70,7 @@ export class TodosAccess {
     }
 
     async deleteTodo(todoId, userId) {
-        logger.info('delete a todo with id  '+ todoId);
+        logger.info('delete a todo with id  ', { todoId: todoId });
 
         await this.dynamoDbClient.delete({
             TableName: this.todosTable,
@@ -84,7 +84,7 @@ export class TodosAccess {
     }
 
     async updateUploadUrlToItem(todoId, userId, imageId) {
-        logger.info('updateUploadUrlToItem a todo with id  '+ todoId);
+        logger.info('updateUploadUrlToItem a todo with id  ', { todoId: todoId });
 
         const params = {
             TableName: this.todosTable,
